@@ -6,7 +6,7 @@ namespace Tests\Unit\Notification\Services;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Foundation\Testing\WithFaker;
-use Modules\Notifications\Api\Events\ResourceDeliveredEvent;
+use Modules\Notifications\Api\Events\WebhookDeliveredEvent;
 use Modules\Notifications\Application\Services\NotificationService;
 use PHPUnit\Framework\TestCase;
 
@@ -26,11 +26,11 @@ final class NotificationServiceTest extends TestCase
         $this->notificationService = new NotificationService($this->dispatcher);
     }
 
-    public function testDelivered(): void
+    public function test_delivered(): void
     {
         $this->dispatcher->expects($this->once())
             ->method('dispatch')
-            ->with($this->isInstanceOf(ResourceDeliveredEvent::class));
+            ->with($this->isInstanceOf(WebhookDeliveredEvent::class));
 
         $this->notificationService->delivered($this->faker->uuid());
     }

@@ -6,7 +6,7 @@ namespace Modules\Notifications\Api\Events;
 
 use Ramsey\Uuid\UuidInterface;
 
-final readonly class ResourceDeliveredEvent
+final readonly class WebhookDeliveredEvent
 {
     public function __construct(
         public UuidInterface $resourceId,
