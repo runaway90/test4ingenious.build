@@ -57,10 +57,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [],
-            "providers": [
-                "Modules\\Invoices\\Providers\\InvoiceServiceProvider"
-            ]
+            "dont-discover": []
         }
     },
     "config": {
@@ -68,7 +65,6 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true,
             "php-http/discovery": true
         }
     },

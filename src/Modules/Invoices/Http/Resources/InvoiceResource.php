@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Invoices\Http\Resources;
 
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Invoices\Domain\Invoice;
@@ -19,9 +20,9 @@ class InvoiceResource extends JsonResource
             'customer_name' => $this->getCustomerName(),
             'customer_email' => $this->getCustomerEmail(),
             'total_price' => $this->getTotalPrice() / 100,
-            'product_lines' => ProductLineResource::collection($this->getProductLines()),
-            'created_at' => $this->getCreatedAt()->toIso8601String(),
-            'updated_at' => $this->getUpdatedAt()->toIso8601String(),
+            'product_lines' => ProductLineResource::collection($this->getProductLines()->toArray()),
+            'created_at' => $this->getCreatedAt()->format(DateTime::ATOM),
+            'updated_at' => $this->getUpdatedAt()->format(DateTime::ATOM),
         ];
     }
 }
