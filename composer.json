@@ -55,7 +55,10 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [],
+            "providers": [
+                "Modules\\Invoices\\Providers\\InvoiceServiceProvider"
+            ]
         }
     },
     "config": {

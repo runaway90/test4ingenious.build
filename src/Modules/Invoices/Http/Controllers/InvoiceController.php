@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
 use Modules\Invoices\Application\CreateInvoiceHandler;
 use Modules\Invoices\Application\FindInvoiceByIdHandler;
+use Modules\Invoices\Application\SendInvoiceHandler;
 use Modules\Invoices\Http\Requests\StoreInvoiceRequest;
 use Modules\Invoices\Http\Resources\InvoiceResource;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,13 +31,18 @@ final class InvoiceController extends Controller
 
     public function show(string $id, FindInvoiceByIdHandler $handler): InvoiceResource
     {
+        // The handler will now throw an exception if not found,
+        // which Laravel will convert to a 404 response.
         $invoice = ($handler)($id);
 
-        if (!$invoice) {
-            // In a real app, this would throw a 404 exception
-            abort(404);
-        }
-
         return new InvoiceResource($invoice);
+    }
+
+    public function send(string $id, SendInvoiceHandler $handler): JsonResponse
+    {
+        // The handler will throw an exception if not found.
+        ($handler)($id);
+
+        return new JsonResponse(null, Response::HTTP_ACCEPTED);
     }
 }
