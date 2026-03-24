@@ -31,8 +31,6 @@ final class InvoiceController extends Controller
 
     public function show(string $id, FindInvoiceByIdHandler $handler): InvoiceResource
     {
-        // The handler will now throw an exception if not found,
-        // which Laravel will convert to a 404 response.
         $invoice = ($handler)($id);
 
         return new InvoiceResource($invoice);
@@ -40,7 +38,6 @@ final class InvoiceController extends Controller
 
     public function send(string $id, SendInvoiceHandler $handler): JsonResponse
     {
-        // The handler will throw an exception if not found.
         ($handler)($id);
 
         return new JsonResponse(null, Response::HTTP_ACCEPTED);

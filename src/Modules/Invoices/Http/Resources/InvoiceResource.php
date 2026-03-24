@@ -18,7 +18,7 @@ class InvoiceResource extends JsonResource
             'status' => $this->getStatus()->value,
             'customer_name' => $this->getCustomerName(),
             'customer_email' => $this->getCustomerEmail(),
-            'total_price' => $this->getTotalPrice() / 100, // Assuming price is in cents
+            'total_price' => $this->getTotalPrice() / 100,
             'product_lines' => ProductLineResource::collection($this->getProductLines()),
             'created_at' => $this->getCreatedAt()->toIso8601String(),
             'updated_at' => $this->getUpdatedAt()->toIso8601String(),

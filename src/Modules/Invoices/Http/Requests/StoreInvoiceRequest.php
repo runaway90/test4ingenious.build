@@ -4,19 +4,28 @@ declare(strict_types=1);
 
 namespace Modules\Invoices\Http\Requests;
 
-// In a real Laravel application, this would extend FormRequest
-class StoreInvoiceRequest
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreInvoiceRequest extends FormRequest
 {
-    public function __construct(public readonly array $data)
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
     {
-        // In a real app, validation rules would be here.
-        // For example:
-        // 'customer_name' => 'required|string|max:255',
-        // 'customer_email' => 'required|email',
+        return true;
     }
 
-    public function validated(): array
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
     {
-        return $this->data;
+        return [
+            'customer_name' => 'required|string|max:255',
+            'customer_email' => 'required|email|max:255',
+        ];
     }
 }

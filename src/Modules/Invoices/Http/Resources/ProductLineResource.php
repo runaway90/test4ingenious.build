@@ -17,8 +17,8 @@ class ProductLineResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'quantity' => $this->quantity,
-            'unit_price' => $this->unitPrice / 100, // Assuming price is in cents
-            'total' => $this->total / 100, // Assuming price is in cents
+            'unit_price' => $this->unitPrice / 100,
+            'total' => $this->total / 100,
         ];
     }
 }
